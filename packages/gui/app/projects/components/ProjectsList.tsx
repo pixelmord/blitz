@@ -1,65 +1,34 @@
+import {Link} from 'blitz'
+
 import {Project} from 'db'
 
 export const ProjectsList = ({projects}: {projects: Project[]}) => (
-  <div className="bg-white overflow-hidden shadow sm:rounded-lg">
-    <ul>
-      {projects.map((project, i) => (
-        <li key={project.id} className={i > 0 ? 'border-t border-gray-200' : ''}>
-          <a
-            href="#"
-            className="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+  <ul>
+    {projects.map((project, i) => (
+      <li key={project.id} className={i > 0 ? 'border-gray-200 border-b' : ''}>
+        <Link href="/projects/[id]" as={`/projects/${project.id}`}>
+          <a className="block transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
             <div className="flex items-center px-4 py-4 sm:px-6">
-              <div className="min-w-0 flex-1 flex items-center">
-                <div className="flex-shrink-0">
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </div>
-                <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                  <div>
-                    <div className="text-sm leading-5 font-medium text-indigo-600 truncate">
-                      Ricardo Cooper
-                    </div>
-                    <div className="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                      <svg
-                        className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                          fillRule="evenodd"
-                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="truncate">ricardo@example.com</span>
-                    </div>
-                  </div>
-                  <div className="hidden md:block">
-                    <div>
-                      <div className="text-sm leading-5 text-gray-900">
-                        Applied on <time dateTime="2020-01-07">January 7, 2020</time>
-                      </div>
-                      <div className="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                        <svg
-                          className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20">
-                          <path
-                            fillRule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        Completed phone screening
-                      </div>
-                    </div>
+              <div className="flex items-center flex-1 min-w-0">
+                <div>
+                  <div className="text-sm font-medium leading-5 truncate">{project.name}</div>
+                  <div className="flex items-center mt-2 text-sm leading-5 text-gray-500">
+                    <svg
+                      className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20">
+                      <path
+                        d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                        clipRule="evenodd"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                    <span className="truncate">{project.path}</span>
                   </div>
                 </div>
               </div>
               <div>
-                <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -69,8 +38,8 @@ export const ProjectsList = ({projects}: {projects: Project[]}) => (
               </div>
             </div>
           </a>
-        </li>
-      ))}
-    </ul>
-  </div>
+        </Link>
+      </li>
+    ))}
+  </ul>
 )

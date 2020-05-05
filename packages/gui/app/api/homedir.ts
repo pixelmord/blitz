@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next"
-import { homedir } from "os"
+import {BlitzApiRequest, BlitzApiResponse} from 'blitz'
+import {homedir} from 'os'
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === "GET") {
-    return res.status(200).json({ homedir: homedir() })
+export default async (req: BlitzApiRequest, res: BlitzApiResponse) => {
+  if (req.method === 'GET') {
+    return res.status(200).json({homedir: homedir()})
   }
 
-  return res.status(404)
+  return res.status(404).end()
 }
