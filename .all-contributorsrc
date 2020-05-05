@@ -416,7 +416,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/31207418?v=4",
       "profile": "https://simonpeterdebbarma.com",
       "contributions": [
-        "review"
+        "review",
+        "doc"
       ]
     },
     {
@@ -427,6 +428,52 @@
       "contributions": [
         "code",
         "doc"
+      ]
+    },
+    {
+      "login": "tmns",
+      "name": "tmns",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/35785003?v=4",
+      "profile": "https://dev.to/tmns",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "harris1717",
+      "name": "Jru Harris",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8636691?v=4",
+      "profile": "http://jruharris.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ivandevp",
+      "name": "Ivan Medina",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9284690?v=4",
+      "profile": "https://twitter.com/ivandevp",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "dwightwatson",
+      "name": "Dwight Watson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1100408?v=4",
+      "profile": "https://www.dwightwatson.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "is2ei",
+      "name": "Horie Issei #hashtagtest",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3948353?v=4",
+      "profile": "http://is2ei.com/",
+      "contributions": [
+        "code"
       ]
     }
   ],
