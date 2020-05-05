@@ -1,7 +1,7 @@
-import { useState } from "react"
+import {useState} from 'react'
 
-import { Nav } from "app/components/Nav"
-import { NewProjectModal } from "app/components/NewProjectModal"
+import {Nav} from 'app/components/Nav'
+import {NewProjectModal} from 'app/components/NewProjectModal'
 
 export default () => {
   const [isOpen, setOpen] = useState(false)
