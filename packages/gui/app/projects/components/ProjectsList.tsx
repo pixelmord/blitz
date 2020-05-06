@@ -1,5 +1,4 @@
 import {Link} from 'blitz'
-
 import {Project} from 'db'
 
 export const ProjectsList = ({projects}: {projects: Project[]}) => (
