@@ -1,29 +1,29 @@
 import {BlitzApiRequest, BlitzApiResponse} from 'blitz'
-import {createWriteStream} from 'fs'
-import p from 'pdsl'
+import {homedir} from 'os'
+import {basename, join} from 'path'
 
-import {runScript} from 'utils/runScript'
-
-const isValid = p`{|
-  id: string,
-  name: string,
-  cwd: string
-|}`
+import {AppGenerator} from '@blitzjs/generator'
 
 export default async (req: BlitzApiRequest, res: BlitzApiResponse) => {
-  if (req.method === 'POST') {
-    if (!isValid(req.body)) {
-      return res.json({})
-    }
+  const name = req.body.name as string
 
-    const {id, name, cwd} = req.body as {id: string; name: string; cwd: string}
+  const destinationRoot = join(homedir(), 'dev', name)
+  const appName = basename(destinationRoot)
 
-    const logStream = createWriteStream(`${id}.txt`, {flags: 'a'})
+  const generator = new AppGenerator({
+    destinationRoot,
+    appName,
+    dryRun: false,
+    useTs: true,
+    yarn: true,
+    version: '0.9.0',
+    skipInstall: false,
+  })
 
-    runScript('blitz', ['new', name], cwd, logStream, (exitCode: number) => {
-      return res.json({exitCode})
-    })
+  try {
+    await generator.run()
+    return res.json({worked: true})
+  } catch {
+    return res.json({worked: false})
   }
-
-  return res.json({})
 }

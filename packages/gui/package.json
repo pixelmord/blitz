@@ -8,6 +8,7 @@
   "dependencies": {
     "@prisma/cli": "^2.0.0-beta.3",
     "@prisma/client": "^2.0.0-beta.3",
+    "@blitzjs/generator": "^0.9.0",
     "blitz": "0.7.0",
     "cross-spawn": "7.0.2",
     "pdsl": "5.2.10",

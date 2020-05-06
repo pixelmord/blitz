@@ -44,7 +44,7 @@ export const NewProjectForm = () => {
           <div className="md:col-span-1">
             <h3 className="text-lg font-medium leading-6">New Project</h3>
             <p className="mt-1 text-sm leading-5 text-gray-500">
-              Please provide us the URL to your project you will embed Splitbee on!
+              Please provide us some details about your new Blitz project.
             </p>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
