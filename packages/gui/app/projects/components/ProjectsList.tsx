@@ -4,7 +4,7 @@ import {Project} from 'db'
 export const ProjectsList = ({projects}: {projects: Project[]}) => (
   <ul>
     {projects.map((project, i) => (
-      <li key={project.id} className={i > 0 ? 'border-gray-200 border-b' : ''}>
+      <li key={project.id} className={i > 0 ? 'border-gray-200 border-t' : ''}>
         <Link href="/projects/[id]" as={`/projects/${project.id}`}>
           <a className="block transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
             <div className="flex items-center px-4 py-4 sm:px-6">

@@ -1,7 +1,6 @@
 import 'styles/fonts.css'
 import 'styles/main.css'
 
-import {Head} from 'blitz'
 import {AppProps} from 'next/app'
 
 export default ({Component, pageProps}: AppProps) => (
