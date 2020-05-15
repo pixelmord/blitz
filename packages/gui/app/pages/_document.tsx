@@ -1,4 +1,4 @@
-import {Document, Html, DocumentHead, Main, NextScript} from '@blitzjs/core'
+import {Document, DocumentHead, Html, Main, NextScript} from '@blitzjs/core'
 
 export default class extends Document {
   render() {

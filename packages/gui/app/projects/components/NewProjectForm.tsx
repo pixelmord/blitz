@@ -1,23 +1,35 @@
-import {useRouter} from 'blitz'
-import {FormEvent, useState} from 'react'
+import {Link, useRouter} from 'blitz'
 
 import {Card} from 'app/components/Card'
 import createProject from 'app/projects/mutations/createProject'
 import {toKebabCase} from 'utils/toKebabCase'
+import {useState} from 'react'
 
 export const NewProjectForm = ({homedir}: {homedir: string}) => {
   const router = useRouter()
   const [name, setName] = useState('')
   const [path, setPath] = useState('projects/')
-  const [errors, setErrors] = useState([])
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   return (
     <form
-      onSubmit={(e: FormEvent<HTMLFormElement>) => {
-        e.stopPropagation()
+      onSubmit={async (e) => {
+        e.preventDefault()
+        setIsSubmitting(true)
 
-        alert('HELLO')
+        const data = {name, path: `${homedir}/${path}`}
+
+        try {
+          const project = await createProject({data})
+
+          if (project) {
+            router.push(`/projects/${project.id}`)
+          } else {
+            setIsSubmitting(false)
+          }
+        } catch {
+          setIsSubmitting(false)
+        }
       }}>
       <Card>
         <div className="grid px-4 py-5 md:grid-cols-3 md:gap-6 sm:p-6">
@@ -73,11 +85,11 @@ export const NewProjectForm = ({homedir}: {homedir: string}) => {
           </button>
         </span>
         <span className="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
-          <button
-            type="button"
-            className="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline sm:text-sm sm:leading-5">
-            Cancel
-          </button>
+          <Link href="/">
+            <a className="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline sm:text-sm sm:leading-5">
+              Cancel
+            </a>
+          </Link>
         </span>
       </div>
       <p>{isSubmitting ? 'submitting' : 'not submitt'}</p>

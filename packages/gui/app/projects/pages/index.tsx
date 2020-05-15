@@ -1,28 +1,27 @@
-import {BlitzPage, GetStaticProps} from 'blitz'
-import {Project} from 'db'
+import {BlitzPage, GetServerSideProps} from 'blitz'
 
 import {Card} from 'app/components/Card'
 import {DarkContainer} from 'app/components/DarkContainer'
 import {Main} from 'app/components/Main'
 import {Nav} from 'app/components/Nav'
+import {Project} from 'db'
 import {ProjectsList} from 'app/projects/components/ProjectsList'
 import {ProjectsListHeader} from 'app/projects/components/ProjectsListHeader'
 import getProjects from 'app/projects/queries/getProjects'
 
-type StaticProps = {
+type ServerSideProps = {
   projects: Project[]
 }
 
-export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+export const getServerSideProps: GetServerSideProps<ServerSideProps> = async () => {
   const projects = await getProjects({})
 
   return {
     props: {projects},
-    unstable_revalidate: 1,
   }
 }
 
-const ProjectsPage: BlitzPage<StaticProps> = ({projects}) => (
+const ProjectsPage: BlitzPage<ServerSideProps> = ({projects}) => (
   <>
     <DarkContainer>
       <Nav />
