@@ -1,8 +1,8 @@
-import {basename, join} from 'path'
-import db, {ProjectCreateArgs} from 'db'
-
 import {existsSync} from 'fs'
 import {homedir} from 'os'
+import {basename, join} from 'path'
+
+import db, {ProjectCreateArgs} from 'db'
 
 const createProject = async (args: ProjectCreateArgs) => {
   const name = args.data.name

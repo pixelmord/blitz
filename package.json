@@ -73,6 +73,7 @@
     "eslint-plugin-unicorn": "19.0.1",
     "husky": "4.2.5",
     "isomorphic-unfetch": "3.0.0",
+    "import-sort-style-module": "6.0.0",
     "jest": "24.9.0",
     "lerna": "3.20.2",
     "lint-staged": "10.0.8",
@@ -83,6 +84,7 @@
     "patch-package": "6.2.2",
     "postinstall-postinstall": "2.1.0",
     "prettier": "2.0.4",
+    "prettier-plugin-import-sort": "0.0.4",
     "pretty-quick": "2.0.1",
     "prompt": "1.0.0",
     "release": "6.1.0",
@@ -104,6 +106,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint && pretty-quick --staged"
+    }
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module"
     }
   },
   "resolutions": {

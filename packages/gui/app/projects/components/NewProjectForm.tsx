@@ -1,9 +1,8 @@
-import {Link, useRouter} from 'blitz'
-
 import {Card} from 'app/components/Card'
 import createProject from 'app/projects/mutations/createProject'
-import {toKebabCase} from 'utils/toKebabCase'
+import {Link, useRouter} from 'blitz'
 import {useState} from 'react'
+import {toKebabCase} from 'utils/toKebabCase'
 
 export const NewProjectForm = ({homedir}: {homedir: string}) => {
   const router = useRouter()

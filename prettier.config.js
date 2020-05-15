@@ -6,4 +6,5 @@ module.exports = {
   semi: false,
   printWidth: 110,
   endOfLine: 'lf',
+  plugins: ['./node_modules/prettier-plugin-import-sort/src/index.js'],
 }

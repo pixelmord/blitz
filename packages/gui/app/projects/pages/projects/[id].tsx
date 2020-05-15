@@ -1,13 +1,12 @@
-import {BlitzPage, GetServerSideProps, Head} from 'blitz'
-
 import {Card} from 'app/components/Card'
 import {DarkContainer} from 'app/components/DarkContainer'
-import Error from 'next/error'
 import {Header} from 'app/components/Header'
 import {Main} from 'app/components/Main'
 import {Nav} from 'app/components/Nav'
-import {Project} from 'db'
 import getProject from 'app/projects/queries/getProject'
+import {BlitzPage, GetServerSideProps, Head} from 'blitz'
+import {Project} from 'db'
+import Error from 'next/error'
 
 type ServerSideProps = {
   project: Project | null
