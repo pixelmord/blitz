@@ -3,40 +3,22 @@ import {FormEvent, useState} from 'react'
 
 import {Card} from 'app/components/Card'
 import createProject from 'app/projects/mutations/createProject'
-import {useHomedir} from 'utils/queries'
 import {toKebabCase} from 'utils/toKebabCase'
 
-export const NewProjectForm = () => {
-  const {data: homedirData} = useHomedir()
+export const NewProjectForm = ({homedir}: {homedir: string}) => {
   const router = useRouter()
   const [name, setName] = useState('')
   const [path, setPath] = useState('projects/')
   const [errors, setErrors] = useState([])
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    const data = {name, path}
-
-    try {
-      const project = await createProject({data})
-
-      // if (project) {
-      //   router.push(`/projects/${project.id}`)
-      // }
-
-      setIsSubmitting(false)
-    } catch (e) {
-      setIsSubmitting(false)
-    }
-
-    console.log(name)
-  }
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={(e: FormEvent<HTMLFormElement>) => {
+        e.stopPropagation()
+
+        alert('HELLO')
+      }}>
       <Card>
         <div className="grid px-4 py-5 md:grid-cols-3 md:gap-6 sm:p-6">
           <div className="md:col-span-1">
@@ -67,7 +49,7 @@ export const NewProjectForm = () => {
               </label>
               <div className="flex w-full max-w-sm mt-1 rounded-md shadow-sm">
                 <span className="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm">
-                  {homedirData && homedirData.homedir}/
+                  {homedir}/
                 </span>
                 <input
                   name="path"
@@ -98,7 +80,7 @@ export const NewProjectForm = () => {
           </button>
         </span>
       </div>
-      <p>{isSubmitting && 'submitting'}</p>
+      <p>{isSubmitting ? 'submitting' : 'not submitt'}</p>
     </form>
   )
 }

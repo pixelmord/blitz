@@ -1,4 +1,3 @@
-import {AppGenerator} from '@blitzjs/generator'
 import db, {ProjectCreateArgs} from 'db'
 import {existsSync} from 'fs'
 import {homedir} from 'os'
