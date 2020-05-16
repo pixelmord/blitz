@@ -2,6 +2,7 @@ import {Card} from 'app/components/Card'
 import {DarkContainer} from 'app/components/DarkContainer'
 import {Main} from 'app/components/Main'
 import {Nav} from 'app/components/Nav'
+import {EmptyProjects} from 'app/projects/components/EmptyProjects'
 import {ProjectsList} from 'app/projects/components/ProjectsList'
 import {ProjectsListHeader} from 'app/projects/components/ProjectsListHeader'
 import getProjects from 'app/projects/queries/getProjects'
@@ -28,7 +29,7 @@ const ProjectsPage: BlitzPage<ServerSideProps> = ({projects}) => (
     <Main header={false}>
       <Card>
         <ProjectsListHeader />
-        <ProjectsList projects={projects} />
+        {projects.length < 1 ? <EmptyProjects /> : <ProjectsList projects={projects} />}
       </Card>
     </Main>
   </>

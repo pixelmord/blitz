@@ -6,8 +6,7 @@ const getProjects = async (args: FindManyProjectArgs) => {
   let projects = await db.project.findMany(args)
 
   projects.forEach(async (project) => {
-    const projectExists = existsSync(project.path)
-    if (!projectExists) {
+    if (!existsSync(project.path)) {
       projects = projects.filter((projecttoDelete) => projecttoDelete !== project)
     }
   })

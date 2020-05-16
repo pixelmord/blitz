@@ -24,9 +24,11 @@ export const NewProjectForm = ({homedir}: {homedir: string}) => {
           if (project) {
             router.push(`/projects/${project.id}`)
           } else {
+            alert('Something went wrong')
             setIsSubmitting(false)
           }
         } catch {
+          alert('Something went wrong')
           setIsSubmitting(false)
         }
       }}>
@@ -49,7 +51,7 @@ export const NewProjectForm = ({homedir}: {homedir: string}) => {
                     name="name"
                     className="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setName(toKebabCase(e.target.value))}
                   />
                 </div>
               </div>
