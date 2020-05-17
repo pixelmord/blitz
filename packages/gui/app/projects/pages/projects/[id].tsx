@@ -13,7 +13,7 @@ import {getPages} from 'utils/getPages'
 type ServerSideProps = {
   project: Project | null
   projectData?: {
-    pages: string[]
+    pages: {route: string; link: string}[]
   }
 }
 

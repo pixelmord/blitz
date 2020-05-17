@@ -1,7 +1,7 @@
 import {Card} from 'app/components/Card'
-import runProject from 'app/projects/mutations/runProject'
+import runProject from 'app/projects/mutations/startProject'
 import {Project} from 'db'
-import {useState} from 'react'
+import {Suspense, useState} from 'react'
 
 export const ConsoleCard = ({project}: {project: Project}) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -13,10 +13,8 @@ export const ConsoleCard = ({project}: {project: Project}) => {
           e.preventDefault()
           setIsSubmitting(true)
 
-          const data = {path: project.path}
-
           try {
-            const res = await runProject({data})
+            const res = await runProject(project)
 
             if (res) {
               setIsSubmitting(false)
@@ -31,7 +29,7 @@ export const ConsoleCard = ({project}: {project: Project}) => {
         }}
         className="flex items-center px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="flex-1">
-          <h3 className="flex-1 text-lg font-medium leading-6">Commands</h3>
+          <h3 className="flex-1 text-lg font-medium leading-6">Commands ({isSubmitting ? 'yes' : 'no'})</h3>
         </div>
         <div className="flex-shrink-0 ml-4">
           <span className="inline-flex rounded-md shadow-sm">
@@ -43,12 +41,7 @@ export const ConsoleCard = ({project}: {project: Project}) => {
           </span>
         </div>
       </form>
-      <ul
-        className="h-full px-4 py-5 overflow-auto font-mono text-sm text-white bg-gray-900 sm:p-6"
-        style={{minHeight: '16rem'}}>
-        ...
-      </ul>
-      <p>{isSubmitting ? 'submitting' : 'not submitt'}</p>
+      <div>Hello</div>
     </Card>
   )
 }
