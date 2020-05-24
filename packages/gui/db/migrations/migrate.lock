@@ -3,4 +3,5 @@
 # Prisma Migrate lockfile v1
 # Read more about conflict resolution here: TODO
 
-20200515152552-init
+20200519164907-init
+20200519195045-fix-dates

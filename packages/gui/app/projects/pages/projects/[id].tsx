@@ -1,11 +1,7 @@
-import {DarkContainer} from 'app/components/DarkContainer'
-import {Header} from 'app/components/Header'
-import {Main} from 'app/components/Main'
-import {Nav} from 'app/components/Nav'
-import {ConsoleCard} from 'app/projects/components/ConsoleCard'
-import {PagesCard} from 'app/projects/components/PagesCard'
+import {Navigation} from 'app/components/Navigation'
 import getProject from 'app/projects/queries/getProject'
-import {BlitzPage, GetServerSideProps} from 'blitz'
+import getProjects from 'app/projects/queries/getProjects'
+import {BlitzPage, GetServerSideProps, ssrQuery} from 'blitz'
 import {Project} from 'db'
 import Error from 'next/error'
 import {getPages} from 'utils/getPages'
@@ -15,15 +11,17 @@ type ServerSideProps = {
   projectData?: {
     pages: {route: string; link: string}[]
   }
+  projects: Project[]
 }
 
-export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({query}) => {
+export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({query, req, res}) => {
   const id = String(query.id)
-  const project = await getProject({where: {id}})
+  const project = await ssrQuery(getProject, {where: {id}}, {req, res})
+  const projects = await ssrQuery(getProjects, {}, {req, res})
 
   if (!project) {
     return {
-      props: {project},
+      props: {project, projects},
     }
   }
 
@@ -33,27 +31,18 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({q
   const projectData = {pages}
 
   return {
-    props: {project, projectData},
+    props: {project, projectData, projects},
   }
 }
 
-const ProjectPage: BlitzPage<ServerSideProps> = ({project, projectData}) => {
+const ProjectPage: BlitzPage<ServerSideProps> = ({project, projectData, projects}) => {
   if (!project || !projectData) {
     return <Error statusCode={404} />
   }
 
   return (
     <>
-      <DarkContainer>
-        <Nav />
-        <Header name={project.name} meta={project.path} />
-      </DarkContainer>
-      <Main>
-        <div className="flex grid flex-wrap grid-cols-1 gap-8 sm:grid-cols-2">
-          <ConsoleCard project={project} />
-          <PagesCard pages={projectData.pages} />
-        </div>
-      </Main>
+      <Navigation projects={projects} />
     </>
   )
 }

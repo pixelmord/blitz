@@ -1,12 +1,16 @@
-import 'styles/fonts.css'
-import 'styles/main.css'
+import 'tippy.js/dist/tippy.css'
 
+import {AppViewWrapper} from 'app/components/AppViewWrapper'
+import {CSSReset} from 'app/components/CSSReset'
 import {AppProps} from 'next/app'
 
-export default ({Component, pageProps}: AppProps) => (
+const App = ({Component, pageProps}: AppProps) => (
   <>
-    <div className="min-h-screen font-sans antialiased text-gray-900 bg-gray-100">
+    <CSSReset />
+    <AppViewWrapper>
       <Component {...pageProps} />
-    </div>
+    </AppViewWrapper>
   </>
 )
+
+export default App

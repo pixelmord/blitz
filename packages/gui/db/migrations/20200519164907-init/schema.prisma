@@ -4,13 +4,15 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./gui.db"
+  url = "***"
 }
 
 model Project {
-  id           String @default(cuid()) @id
+  id           String   @default(cuid()) @id
+  createdAt    DateTime @default(now())
   name         String
   path         String
   description  String
   profilePhoto String
+  lastActive   DateTime @default(now())
 }
